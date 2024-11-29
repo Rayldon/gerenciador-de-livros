@@ -1,32 +1,32 @@
 package br.jus.tjrj.gerenciadorlivro.domain.service;
 
-import br.jus.tjrj.gerenciadorlivro.adapters.dto.AutorDTO;
-import br.jus.tjrj.gerenciadorlivro.adapters.mapper.AutorMapper;
-import br.jus.tjrj.gerenciadorlivro.domain.entidade.Autor;
-import br.jus.tjrj.gerenciadorlivro.domain.repositorio.AutorRepository;
+import br.jus.tjrj.gerenciadorlivro.adapters.dto.AssuntoDTO;
+import br.jus.tjrj.gerenciadorlivro.adapters.mapper.AssuntoMapper;
+import br.jus.tjrj.gerenciadorlivro.domain.entidade.Assunto;
+import br.jus.tjrj.gerenciadorlivro.domain.repositorio.AssuntoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AutorService {
+public class AssuntoService {
 
-    private final AutorRepository autorRepository;
+    private final AssuntoRepository assuntoRepository;
 
-    public AutorService(AutorRepository autorRepository) {
-        this.autorRepository = autorRepository;
+    public AssuntoService(AssuntoRepository assuntoRepository) {
+        this.assuntoRepository = assuntoRepository;
     }
 
-    public Autor salvar(AutorDTO autorDTO) {
-        Autor autor = AutorMapper.INSTANCE.toEntity(autorDTO);
-        return autorRepository.salvar(autor);
+    public Assunto salvar(AssuntoDTO assuntoDTO) {
+        Assunto assunto = AssuntoMapper.INSTANCE.toEntity(assuntoDTO);
+        return assuntoRepository.salvar(assunto);
     }
 
-    public Page<Autor> buscarAutores(String nome, Pageable pageable) {
-        return autorRepository.consultaPaginada(nome, pageable);
+    public Page<Assunto> buscarAssuntos(String descricao, Pageable pageable) {
+        return assuntoRepository.consultaPaginada(descricao, pageable);
     }
 
-    public void excluirAutor(Long id) {
-        autorRepository.excluirPorId(id);
+    public void excluirAssunto(Long id) {
+        assuntoRepository.excluirPorId(id);
     }
 }

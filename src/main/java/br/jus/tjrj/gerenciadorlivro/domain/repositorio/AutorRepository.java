@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface AutorRepository {
-    Page<Autor> consultaPaginada(String nome, Pageable pageable);
+    Page<Autor> consultaPaginada(String descricao, Pageable pageable);
 
     Autor salvar(Autor autor);
 

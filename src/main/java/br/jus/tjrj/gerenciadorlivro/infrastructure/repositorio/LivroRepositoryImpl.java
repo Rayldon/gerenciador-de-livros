@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class JpaLivroRepository implements LivroRepository {
+public class LivroRepositoryImpl implements LivroRepository {
 
     private final SpringLivroRepository springLivroRepository;
 
-    public JpaLivroRepository(SpringLivroRepository springLivroRepository) {
+    public LivroRepositoryImpl(SpringLivroRepository springLivroRepository) {
         this.springLivroRepository = springLivroRepository;
     }
 

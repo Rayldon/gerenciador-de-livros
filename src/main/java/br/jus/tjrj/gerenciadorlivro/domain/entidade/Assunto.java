@@ -14,17 +14,17 @@ public class Assunto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codAs")
-    private Integer codAs;
+    private Integer id;
 
     @Column(name = "Descricao", length = 20)
     private String descricao;
 
-    public Integer getCodAs() {
-        return codAs;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCodAs(Integer codAs) {
-        this.codAs = codAs;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDescricao() {

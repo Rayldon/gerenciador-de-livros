@@ -1,16 +1,16 @@
 package br.jus.tjrj.gerenciadorlivro.adapters.mapper;
 
-import br.jus.tjrj.gerenciadorlivro.adapters.dto.AutorDTO;
-import br.jus.tjrj.gerenciadorlivro.domain.entidade.Autor;
+import br.jus.tjrj.gerenciadorlivro.adapters.dto.AssuntoDTO;
+import br.jus.tjrj.gerenciadorlivro.domain.entidade.Assunto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
-public interface AutorMapper {
+public interface AssuntoMapper {
 
-    AutorMapper INSTANCE = Mappers.getMapper(AutorMapper.class);
+    AssuntoMapper INSTANCE = Mappers.getMapper(AssuntoMapper.class);
 
-    Autor toEntity(AutorDTO autorDTO);
+    Assunto toEntity(AssuntoDTO assuntoDTO);
 
-    AutorDTO toDTO(Autor autor);
+    AssuntoDTO toDTO(Assunto assunto);
 }
