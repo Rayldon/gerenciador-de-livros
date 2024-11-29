@@ -14,17 +14,17 @@ public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CodAu")
-    private Integer codAu;
+    private Integer id;
 
     @Column(name = "Nome", length = 40)
     private String nome;
 
-    public Integer getCodAu() {
-        return codAu;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCodAu(Integer codAu) {
-        this.codAu = codAu;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
