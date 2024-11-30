@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AssuntoService {
 
@@ -28,5 +30,9 @@ public class AssuntoService {
 
     public void excluirAssunto(Long id) {
         assuntoRepository.excluirPorId(id);
+    }
+
+    public List<Assunto> buscarTodosAssuntos() {
+        return assuntoRepository.buscarTodos();
     }
 }

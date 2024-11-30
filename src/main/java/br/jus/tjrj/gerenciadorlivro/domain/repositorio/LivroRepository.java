@@ -1,13 +1,13 @@
 package br.jus.tjrj.gerenciadorlivro.domain.repositorio;
 
 import br.jus.tjrj.gerenciadorlivro.domain.entidade.Livro;
-
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface LivroRepository {
+    Page<Livro> consultaPaginada(String titulo, Pageable pageable);
+
     Livro salvar(Livro livro);
-    Optional<Livro> buscarPorId(Long id);
-    List<Livro> buscarTodos();
-    void remover(Long id);
+
+    void excluirPorId(Long id);
 }

@@ -2,6 +2,7 @@ package br.jus.tjrj.gerenciadorlivro.adapters.controller;
 
 import br.jus.tjrj.gerenciadorlivro.adapters.dto.AssuntoDTO;
 import br.jus.tjrj.gerenciadorlivro.domain.entidade.Assunto;
+import br.jus.tjrj.gerenciadorlivro.domain.entidade.Autor;
 import br.jus.tjrj.gerenciadorlivro.domain.service.AssuntoService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/assunto")
@@ -45,5 +48,10 @@ public class AssuntoController {
     public ResponseEntity<Void> excluirAssunto(@PathVariable Long id) {
         assuntoService.excluirAssunto(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/todos")
+    public ResponseEntity<List<Assunto>> listarTodosAssuntos() {
+        return ResponseEntity.status(HttpStatus.OK).body(assuntoService.buscarTodosAssuntos());
     }
 }

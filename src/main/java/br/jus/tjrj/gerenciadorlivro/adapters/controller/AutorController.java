@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/autor")
 public class AutorController {
@@ -39,6 +41,11 @@ public class AutorController {
                                      @RequestParam(defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size);
         return autorService.buscarAutores(nome, pageable);
+    }
+
+    @GetMapping("/todos")
+    public ResponseEntity<List<Autor>> listarTodosAutores() {
+        return ResponseEntity.status(HttpStatus.OK).body(autorService.buscarTodosAutores());
     }
 
     @DeleteMapping("/{id}")

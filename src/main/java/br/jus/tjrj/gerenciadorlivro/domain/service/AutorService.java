@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AutorService {
 
@@ -26,7 +28,15 @@ public class AutorService {
         return autorRepository.consultaPaginada(nome, pageable);
     }
 
+    public List<Autor> buscarTodosAutores() {
+        return autorRepository.buscarTodos();
+    }
+
     public void excluirAutor(Long id) {
         autorRepository.excluirPorId(id);
+    }
+
+    public Autor buscarAutorPorId(Long id){
+        return autorRepository.buscarPorId(id);
     }
 }

@@ -2,37 +2,31 @@ package br.jus.tjrj.gerenciadorlivro.infrastructure.repositorio;
 
 import br.jus.tjrj.gerenciadorlivro.domain.entidade.Livro;
 import br.jus.tjrj.gerenciadorlivro.domain.repositorio.LivroRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class LivroRepositoryImpl implements LivroRepository {
 
-    private final SpringLivroRepository springLivroRepository;
+    private final SpringLivroRepository repository;
 
-    public LivroRepositoryImpl(SpringLivroRepository springLivroRepository) {
-        this.springLivroRepository = springLivroRepository;
+    public LivroRepositoryImpl(SpringLivroRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public Page<Livro> consultaPaginada(String titulo, Pageable pageable) {
+        return repository.findByTituloContaining(titulo, pageable);
     }
 
     @Override
     public Livro salvar(Livro livro) {
-        return springLivroRepository.save(livro);
+        return repository.save(livro);
     }
 
     @Override
-    public Optional<Livro> buscarPorId(Long id) {
-        return springLivroRepository.findById(id);
-    }
-
-    @Override
-    public List<Livro> buscarTodos() {
-        return springLivroRepository.findAll();
-    }
-
-    @Override
-    public void remover(Long id) {
-        springLivroRepository.deleteById(id);
+    public void excluirPorId(Long id) {
+        repository.deleteById(id);
     }
 }

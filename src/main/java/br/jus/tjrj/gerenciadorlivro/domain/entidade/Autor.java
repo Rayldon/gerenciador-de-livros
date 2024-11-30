@@ -1,11 +1,16 @@
 package br.jus.tjrj.gerenciadorlivro.domain.entidade;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Autor")
@@ -14,16 +19,20 @@ public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CodAu")
-    private Integer id;
+    private Long id;
 
     @Column(name = "Nome", length = 40)
     private String nome;
 
-    public Integer getId() {
+    @JsonIgnore
+    @ManyToMany(mappedBy = "autores")
+    private Set<Livro> livros = new HashSet<>();
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -33,6 +42,14 @@ public class Autor {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Set<Livro> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(Set<Livro> livros) {
+        this.livros = livros;
     }
 }
 

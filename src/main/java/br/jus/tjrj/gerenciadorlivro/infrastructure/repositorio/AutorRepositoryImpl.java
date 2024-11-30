@@ -6,10 +6,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Set;
+
 @Repository
 public class AutorRepositoryImpl implements AutorRepository {
 
-    private SpringAutorRepository repository;
+    private final SpringAutorRepository repository;
 
     public AutorRepositoryImpl(SpringAutorRepository repository) {
         this.repository = repository;
@@ -21,6 +24,11 @@ public class AutorRepositoryImpl implements AutorRepository {
     }
 
     @Override
+    public List<Autor> buscarTodos() {
+        return repository.findAll();
+    }
+
+    @Override
     public Autor salvar(Autor autor) {
         return repository.save(autor);
     }
@@ -28,5 +36,15 @@ public class AutorRepositoryImpl implements AutorRepository {
     @Override
     public void excluirPorId(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public Autor buscarPorId(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Set<Autor> buscarAutoresPorIds(Set<Long> ids) {
+        return repository.findByIdIn(ids);
     }
 }

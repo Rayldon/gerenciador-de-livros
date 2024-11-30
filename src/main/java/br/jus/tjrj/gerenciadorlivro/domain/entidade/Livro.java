@@ -1,12 +1,17 @@
 package br.jus.tjrj.gerenciadorlivro.domain.entidade;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Livro")
@@ -15,7 +20,7 @@ public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Codl")
-    private Integer codl;
+    private Long id;
 
     @Column(name = "Titulo", length = 40)
     private String titulo;
@@ -29,13 +34,23 @@ public class Livro {
     @Column(name = "AnoPublicacao", length = 4)
     private String anoPublicacao;
 
-    // Getters e Setters
-    public Integer getCodl() {
-        return codl;
+    @ManyToMany
+    @JoinTable(name = "livro_autor", joinColumns = @JoinColumn(name = "Livro_Cod"),
+            inverseJoinColumns = @JoinColumn(name = "Autor_CodAu"))
+    private Set<Autor> autores = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "Livro_Assunto", joinColumns = @JoinColumn(name = "Livro_Cod"),
+            inverseJoinColumns = @JoinColumn(name = "Assunto_codAs")
+    )
+    private Set<Assunto> assuntos = new HashSet<>();
+
+    public Long getId() {
+        return id;
     }
 
-    public void setCodl(Integer codl) {
-        this.codl = codl;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -68,6 +83,22 @@ public class Livro {
 
     public void setAnoPublicacao(String anoPublicacao) {
         this.anoPublicacao = anoPublicacao;
+    }
+
+    public Set<Autor> getAutores() {
+        return autores;
+    }
+
+    public void setAutores(Set<Autor> autores) {
+        this.autores = autores;
+    }
+
+    public Set<Assunto> getAssuntos() {
+        return assuntos;
+    }
+
+    public void setAssuntos(Set<Assunto> assuntos) {
+        this.assuntos = assuntos;
     }
 }
 
