@@ -1,5 +1,6 @@
 package br.jus.tjrj.gerenciadorlivro.domain.repositorio;
 
+import br.jus.tjrj.gerenciadorlivro.adapters.dto.AutoCompleteDTO;
 import br.jus.tjrj.gerenciadorlivro.domain.entidade.Assunto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,4 +18,6 @@ public interface AssuntoRepository {
     List<Assunto> buscarTodos();
 
     Set<Assunto> buscarAutoresPorIds(Set<Long> ids);
+
+    List<AutoCompleteDTO> autoComplete(String searchQuery);
 }

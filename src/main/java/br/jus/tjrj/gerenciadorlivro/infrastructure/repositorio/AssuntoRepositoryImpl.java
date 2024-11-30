@@ -1,9 +1,10 @@
 package br.jus.tjrj.gerenciadorlivro.infrastructure.repositorio;
 
+import br.jus.tjrj.gerenciadorlivro.adapters.dto.AutoCompleteDTO;
 import br.jus.tjrj.gerenciadorlivro.domain.entidade.Assunto;
-import br.jus.tjrj.gerenciadorlivro.domain.entidade.Autor;
 import br.jus.tjrj.gerenciadorlivro.domain.repositorio.AssuntoRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
@@ -42,5 +43,11 @@ public class AssuntoRepositoryImpl implements AssuntoRepository {
     @Override
     public Set<Assunto> buscarAutoresPorIds(Set<Long> ids) {
         return repository.findByIdIn(ids);
+    }
+
+    @Override
+    public List<AutoCompleteDTO> autoComplete(String searchQuery) {
+        Pageable pageable = PageRequest.of(0, 10);
+        return repository.findByQuery(searchQuery, pageable);
     }
 }

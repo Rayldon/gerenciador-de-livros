@@ -1,5 +1,6 @@
 package br.jus.tjrj.gerenciadorlivro.domain.service;
 
+import br.jus.tjrj.gerenciadorlivro.adapters.dto.AutoCompleteDTO;
 import br.jus.tjrj.gerenciadorlivro.adapters.dto.AutorDTO;
 import br.jus.tjrj.gerenciadorlivro.adapters.mapper.AutorMapper;
 import br.jus.tjrj.gerenciadorlivro.domain.entidade.Autor;
@@ -28,15 +29,11 @@ public class AutorService {
         return autorRepository.consultaPaginada(nome, pageable);
     }
 
-    public List<Autor> buscarTodosAutores() {
-        return autorRepository.buscarTodos();
+    public List<AutoCompleteDTO> autoComplete(String searchQuery) {
+        return autorRepository.autoComplete(searchQuery);
     }
 
     public void excluirAutor(Long id) {
         autorRepository.excluirPorId(id);
-    }
-
-    public Autor buscarAutorPorId(Long id){
-        return autorRepository.buscarPorId(id);
     }
 }

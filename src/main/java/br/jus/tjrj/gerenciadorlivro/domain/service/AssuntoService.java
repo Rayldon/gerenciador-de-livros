@@ -1,6 +1,7 @@
 package br.jus.tjrj.gerenciadorlivro.domain.service;
 
 import br.jus.tjrj.gerenciadorlivro.adapters.dto.AssuntoDTO;
+import br.jus.tjrj.gerenciadorlivro.adapters.dto.AutoCompleteDTO;
 import br.jus.tjrj.gerenciadorlivro.adapters.mapper.AssuntoMapper;
 import br.jus.tjrj.gerenciadorlivro.domain.entidade.Assunto;
 import br.jus.tjrj.gerenciadorlivro.domain.repositorio.AssuntoRepository;
@@ -34,5 +35,9 @@ public class AssuntoService {
 
     public List<Assunto> buscarTodosAssuntos() {
         return assuntoRepository.buscarTodos();
+    }
+
+    public List<AutoCompleteDTO> autoComplete(String searchQuery) {
+        return assuntoRepository.autoComplete(searchQuery);
     }
 }

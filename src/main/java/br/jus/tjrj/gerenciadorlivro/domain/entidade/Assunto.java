@@ -19,7 +19,7 @@ public class Assunto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codAs")
-    private Integer id;
+    private Long id;
 
     @Column(name = "Descricao", length = 20)
     private String descricao;
@@ -28,11 +28,11 @@ public class Assunto {
     @ManyToMany(mappedBy = "assuntos")
     private Set<Livro> livros = new HashSet<>();
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

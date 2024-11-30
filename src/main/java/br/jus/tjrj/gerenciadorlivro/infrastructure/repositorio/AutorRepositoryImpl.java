@@ -1,8 +1,10 @@
 package br.jus.tjrj.gerenciadorlivro.infrastructure.repositorio;
 
+import br.jus.tjrj.gerenciadorlivro.adapters.dto.AutoCompleteDTO;
 import br.jus.tjrj.gerenciadorlivro.domain.entidade.Autor;
 import br.jus.tjrj.gerenciadorlivro.domain.repositorio.AutorRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
@@ -24,8 +26,9 @@ public class AutorRepositoryImpl implements AutorRepository {
     }
 
     @Override
-    public List<Autor> buscarTodos() {
-        return repository.findAll();
+    public List<AutoCompleteDTO> autoComplete(String searchQuery) {
+        Pageable pageable = PageRequest.of(0, 10);
+        return repository.findByQuery(searchQuery, pageable);
     }
 
     @Override
@@ -36,15 +39,5 @@ public class AutorRepositoryImpl implements AutorRepository {
     @Override
     public void excluirPorId(Long id) {
         repository.deleteById(id);
-    }
-
-    @Override
-    public Autor buscarPorId(Long id) {
-        return repository.findById(id).orElse(null);
-    }
-
-    @Override
-    public Set<Autor> buscarAutoresPorIds(Set<Long> ids) {
-        return repository.findByIdIn(ids);
     }
 }

@@ -1,8 +1,14 @@
 package br.jus.tjrj.gerenciadorlivro.adapters.dto;
 
-public class AssuntoDTO {
+public class AutoCompleteDTO {
+
     private Long id;
     private String descricao;
+
+    public AutoCompleteDTO(Long id, String descricao) {
+        this.id = id;
+        this.descricao = descricao;
+    }
 
     public Long getId() {
         return id;
@@ -20,3 +26,4 @@ public class AssuntoDTO {
         this.descricao = descricao;
     }
 }
+

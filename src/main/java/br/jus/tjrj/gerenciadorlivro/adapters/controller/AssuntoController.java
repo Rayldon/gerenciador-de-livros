@@ -1,6 +1,7 @@
 package br.jus.tjrj.gerenciadorlivro.adapters.controller;
 
 import br.jus.tjrj.gerenciadorlivro.adapters.dto.AssuntoDTO;
+import br.jus.tjrj.gerenciadorlivro.adapters.dto.AutoCompleteDTO;
 import br.jus.tjrj.gerenciadorlivro.domain.entidade.Assunto;
 import br.jus.tjrj.gerenciadorlivro.domain.entidade.Autor;
 import br.jus.tjrj.gerenciadorlivro.domain.service.AssuntoService;
@@ -53,5 +54,11 @@ public class AssuntoController {
     @GetMapping("/todos")
     public ResponseEntity<List<Assunto>> listarTodosAssuntos() {
         return ResponseEntity.status(HttpStatus.OK).body(assuntoService.buscarTodosAssuntos());
+    }
+
+    @GetMapping("/autocomplete/{searchQuery}")
+    public ResponseEntity<List<AutoCompleteDTO>> autoComplete(@PathVariable String searchQuery) {
+        List<AutoCompleteDTO> autores = assuntoService.autoComplete(searchQuery);
+        return ResponseEntity.status(HttpStatus.OK).body(autores);
     }
 }

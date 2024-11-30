@@ -1,6 +1,7 @@
 package br.jus.tjrj.gerenciadorlivro.adapters.mapper;
 
 import br.jus.tjrj.gerenciadorlivro.adapters.dto.LivroDTO;
+import br.jus.tjrj.gerenciadorlivro.domain.entidade.Assunto;
 import br.jus.tjrj.gerenciadorlivro.domain.entidade.Autor;
 import br.jus.tjrj.gerenciadorlivro.domain.entidade.Livro;
 import org.mapstruct.Mapper;
@@ -20,6 +21,7 @@ public interface LivroMapper {
     LivroDTO toDTO(Livro livro);
 
     @Mapping(target = "autores", source = "autoresIds", qualifiedByName = "mapAutoresIdsToAutores")
+    @Mapping(target = "assuntos", source = "assuntosIds", qualifiedByName = "mapAssuntosIdsToAssuntos")
     Livro toEntity(LivroDTO livroDTO);
 
     @Named("mapAutoresIdsToAutores")
@@ -29,6 +31,16 @@ public interface LivroMapper {
                     Autor autor = new Autor();
                     autor.setId(id);
                     return autor;
+                }).collect(Collectors.toSet());
+    }
+
+    @Named("mapAssuntosIdsToAssuntos")
+    default Set<Assunto> mapAssuntosIdsToAssuntos(Set<Long> assuntosIds) {
+        return assuntosIds.stream()
+                .map(id -> {
+                    Assunto assunto = new Assunto();
+                    assunto.setId(id);
+                    return assunto;
                 }).collect(Collectors.toSet());
     }
 }
