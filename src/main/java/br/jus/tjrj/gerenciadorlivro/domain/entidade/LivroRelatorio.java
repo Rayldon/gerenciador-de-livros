@@ -5,45 +5,34 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Entity
-@Table(name = "tb_livro")
-public class Livro {
+@Table(name = "Vw_Livro_Relatorio")  // Nome da sua view no banco de dados
+public class LivroRelatorio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Codl")
+    @Column(name = "id_livro", nullable = false)
     private Long id;
 
-    @Column(name = "Titulo", length = 40)
+    @Column(name = "Titulo")
     private String titulo;
 
-    @Column(name = "Editora", length = 40)
+    @Column(name = "Editora")
     private String editora;
 
     @Column(name = "Edicao")
     private Integer edicao;
 
-    @Column(name = "Ano_Publicacao", length = 4)
+    @Column(name = "Ano_Publicacao")
     private String anoPublicacao;
 
-    @ManyToMany
-    @JoinTable(name = "tb_livro_autor", joinColumns = @JoinColumn(name = "Livro_Cod"),
-            inverseJoinColumns = @JoinColumn(name = "Autor_CodAu"))
-    private Set<Autor> autores = new HashSet<>();
+    @Column(name = "Autor_Nome")
+    private String autorNome;
 
-    @ManyToMany
-    @JoinTable(name = "tb_livro_assunto", joinColumns = @JoinColumn(name = "Livro_Cod"),
-            inverseJoinColumns = @JoinColumn(name = "Assunto_codAs")
-    )
-    private Set<Assunto> assuntos = new HashSet<>();
+    @Column(name = "Assunto_Descricao")
+    private String assuntoDescricao;
 
     public Long getId() {
         return id;
@@ -85,20 +74,19 @@ public class Livro {
         this.anoPublicacao = anoPublicacao;
     }
 
-    public Set<Autor> getAutores() {
-        return autores;
+    public String getAutorNome() {
+        return autorNome;
     }
 
-    public void setAutores(Set<Autor> autores) {
-        this.autores = autores;
+    public void setAutorNome(String autorNome) {
+        this.autorNome = autorNome;
     }
 
-    public Set<Assunto> getAssuntos() {
-        return assuntos;
+    public String getAssuntoDescricao() {
+        return assuntoDescricao;
     }
 
-    public void setAssuntos(Set<Assunto> assuntos) {
-        this.assuntos = assuntos;
+    public void setAssuntoDescricao(String assuntoDescricao) {
+        this.assuntoDescricao = assuntoDescricao;
     }
 }
-

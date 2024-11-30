@@ -13,12 +13,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Assunto")
+@Table(name = "tb_assunto")
 public class Assunto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codAs")
+    @Column(name = "cod_As")
     private Long id;
 
     @Column(name = "Descricao", length = 20)
