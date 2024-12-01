@@ -24,18 +24,18 @@ VALUES
     ('Mistério'),
     ('Política');
 
-INSERT INTO tb_livro (titulo, edicao, editora, ano_publicacao)
+INSERT INTO tb_livro (titulo, edicao, editora, ano_publicacao, valor)
 VALUES
-    ('Cem Anos de Solidão', 1, 'Editora X', 1967),
-    ('Norwegian Wood', 2, 'Editora Y', 1987),
-    ('Harry Potter e a Pedra Filosofal', 1, 'Rocco', 1997),
-    ('Orgulho e Preconceito', 1, 'Editora Z', 1813),
-    ('1984', 1, 'Editora W', 1949),
-    ('Oliver Twist', 1, 'Editora V', 1837),
-    ('A Metamorfose', 1, 'Editora U', 1915),
-    ('As Aventuras de Huckleberry Finn', 1, 'Editora T', 1884),
-    ('Mrs. Dalloway', 1, 'Editora S', 1925),
-    ('Guerra e Paz', 1, 'Editora R', 1869);
+    ('Cem Anos de Solidão', 1, 'Editora X', 1967, 10.99),
+    ('Norwegian Wood', 2, 'Editora Y', 1987,10.99),
+    ('Harry Potter e a Pedra Filosofal', 1, 'Rocco', 1997,10.99),
+    ('Orgulho e Preconceito', 1, 'Editora Z', 1813,10.99),
+    ('1984', 1, 'Editora W', 1949,10.99),
+    ('Oliver Twist', 1, 'Editora V', 1837,10.99),
+    ('A Metamorfose', 1, 'Editora U', 1915,10.99),
+    ('As Aventuras de Huckleberry Finn', 1, 'Editora T', 1884,10.99),
+    ('Mrs. Dalloway', 1, 'Editora S', 1925,10.99),
+    ('Guerra e Paz', 1, 'Editora R', 1869,10.99);
 
 INSERT INTO tb_livro_autor (Livro_Cod, Autor_Cod_Au)
 VALUES

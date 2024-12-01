@@ -3,7 +3,8 @@ CREATE TABLE tb_livro (
    Titulo VARCHAR(40) NOT NULL,
    Editora VARCHAR(40),
    Edicao INTEGER,
-   Ano_Publicacao VARCHAR(4)
+   Ano_Publicacao VARCHAR(4),
+   valor DECIMAL(10, 2) NOT NULL
 );
 
 CREATE TABLE tb_autor (

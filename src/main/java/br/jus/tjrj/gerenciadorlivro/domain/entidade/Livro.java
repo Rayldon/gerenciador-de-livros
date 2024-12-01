@@ -10,6 +10,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -34,6 +35,9 @@ public class Livro {
 
     @Column(name = "Ano_Publicacao", length = 4)
     private String anoPublicacao;
+
+    @Column(name = "valor", precision = 10, scale = 2)
+    private BigDecimal valor;
 
     @ManyToMany
     @JoinTable(name = "tb_livro_autor", joinColumns = @JoinColumn(name = "Livro_Cod"),
@@ -84,6 +88,14 @@ public class Livro {
 
     public void setAnoPublicacao(String anoPublicacao) {
         this.anoPublicacao = anoPublicacao;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 
     public Set<Autor> getAutores() {

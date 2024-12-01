@@ -22,6 +22,7 @@ public interface LivroMapper {
 
     @Mapping(target = "autores", source = "autoresIds", qualifiedByName = "mapAutoresIdsToAutores")
     @Mapping(target = "assuntos", source = "assuntosIds", qualifiedByName = "mapAssuntosIdsToAssuntos")
+    @Mapping(target = "valor", source = "valor")
     Livro toEntity(LivroDTO livroDTO);
 
     @Named("mapAutoresIdsToAutores")

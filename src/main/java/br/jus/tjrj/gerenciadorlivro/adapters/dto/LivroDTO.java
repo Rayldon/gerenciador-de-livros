@@ -1,5 +1,6 @@
 package br.jus.tjrj.gerenciadorlivro.adapters.dto;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 public class LivroDTO {
@@ -8,6 +9,7 @@ public class LivroDTO {
     private String editora;
     private Integer edicao;
     private String anoPublicacao;
+    private BigDecimal valor;
     private Set<Long> autoresIds;
     private Set<Long> assuntosIds;
 
@@ -49,6 +51,14 @@ public class LivroDTO {
 
     public void setAnoPublicacao(String anoPublicacao) {
         this.anoPublicacao = anoPublicacao;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 
     public Set<Long> getAutoresIds() {
