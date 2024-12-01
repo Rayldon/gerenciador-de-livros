@@ -8,6 +8,7 @@ import br.jus.tjrj.gerenciadorlivro.domain.entidade.Assunto;
 import br.jus.tjrj.gerenciadorlivro.domain.entidade.Autor;
 import br.jus.tjrj.gerenciadorlivro.domain.entidade.Livro;
 import br.jus.tjrj.gerenciadorlivro.domain.repositorio.LivroRepository;
+import br.jus.tjrj.gerenciadorlivro.infrastructure.exception.GerenciadoLivroException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
@@ -36,6 +38,10 @@ class LivroServiceTest {
         livroDTO.setTitulo("Livro Teste");
         livroDTO.setAutoresIds(Set.of(1L));
         livroDTO.setAssuntosIds(Set.of(1L));
+        livroDTO.setEditora("Teste");
+        livroDTO.setEdicao(1);
+        livroDTO.setAnoPublicacao("2024");
+        livroDTO.setValor(new BigDecimal(10));
 
         livro = new Livro();
         livro.setTitulo("Livro Teste");
@@ -82,4 +88,26 @@ class LivroServiceTest {
 
         verify(livroRepository, times(1)).excluirPorId(id);
     }
+
+    @Test
+    void testSalvarComCamposInvalidos() {
+        livroDTO.setValor(null);
+        Exception exception = assertThrows(GerenciadoLivroException.class, () -> livroService.salvar(livroDTO));
+        assertTrue(exception.getMessage().contains("O valor é obrigatório"));
+
+        livroDTO.setAnoPublicacao("");
+        exception = assertThrows(GerenciadoLivroException.class, () -> livroService.salvar(livroDTO));
+        assertTrue(exception.getMessage().contains("O ano de publicação é obrigatório"));
+
+        livroDTO.setEditora("");
+        exception = assertThrows(GerenciadoLivroException.class, () -> livroService.salvar(livroDTO));
+        assertTrue(exception.getMessage().contains("A editora é obrigatória"));
+
+        livroDTO.setTitulo(null);
+        exception = assertThrows(GerenciadoLivroException.class, () -> livroService.salvar(livroDTO));
+        assertTrue(exception.getMessage().contains("O título é obrigatório"));
+
+        verify(livroRepository, never()).salvar(any());
+    }
+
 }
