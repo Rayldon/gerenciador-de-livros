@@ -11,6 +11,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -100,5 +101,21 @@ public class Livro {
     public void setAssuntos(Set<Assunto> assuntos) {
         this.assuntos = assuntos;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Livro livro = (Livro) o;
+        return Objects.equals(id, livro.id) &&
+                Objects.equals(titulo, livro.titulo) &&
+                Objects.equals(autores, livro.autores);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, titulo, autores);
+    }
+
 }
 

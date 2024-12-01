@@ -31,13 +31,13 @@ public class AssuntoController {
         this.assuntoService = assuntoService;
     }
 
-    @PostMapping
+    @PostMapping(produces = "application/json")
     public ResponseEntity<Assunto> salvar(@RequestBody AssuntoDTO assuntoDTO) {
         Assunto assunto = assuntoService.salvar(assuntoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(assunto);
     }
 
-    @GetMapping
+    @GetMapping(produces = "application/json")
     public Page<Assunto> listarAssuntoes(@RequestParam(defaultValue = "") String descricao,
                                      @RequestParam(defaultValue = "0") int page,
                                      @RequestParam(defaultValue = "10") int size) {
@@ -51,12 +51,12 @@ public class AssuntoController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/todos")
+    @GetMapping(value = "/todos", produces = "application/json")
     public ResponseEntity<List<Assunto>> listarTodosAssuntos() {
         return ResponseEntity.status(HttpStatus.OK).body(assuntoService.buscarTodosAssuntos());
     }
 
-    @GetMapping("/autocomplete/{searchQuery}")
+    @GetMapping(value = "/autocomplete/{searchQuery}", produces = "application/json")
     public ResponseEntity<List<AutoCompleteDTO>> autoComplete(@PathVariable String searchQuery) {
         List<AutoCompleteDTO> autores = assuntoService.autoComplete(searchQuery);
         return ResponseEntity.status(HttpStatus.OK).body(autores);

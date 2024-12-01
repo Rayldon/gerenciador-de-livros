@@ -30,7 +30,7 @@ public class AutorController {
         this.autorService = autorService;
     }
 
-    @PostMapping
+    @PostMapping(produces = "application/json")
     public ResponseEntity<Autor> salvar(@RequestBody AutorDTO autorDTO) {
         Autor autor = autorService.salvar(autorDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(autor);
@@ -44,7 +44,7 @@ public class AutorController {
         return autorService.buscarAutores(nome, pageable);
     }
 
-    @GetMapping("/autocomplete/{searchQuery}")
+    @GetMapping(value = "/autocomplete/{searchQuery}", produces = "application/json")
     public ResponseEntity<List<AutoCompleteDTO>> autoComplete(@PathVariable String searchQuery) {
         List<AutoCompleteDTO> autores = autorService.autoComplete(searchQuery);
         return ResponseEntity.status(HttpStatus.OK).body(autores);
